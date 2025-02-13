@@ -6,4 +6,4 @@ In addition to the insights, a quick and interactive "quiz" feature was develope
 
 The data were taken from an open-source repository (https://github.com/openfootball/football.json/tree/master).
 
-The real objective of the repository was to test actual capabilities of Cursor and Vercel.
+The real objective of the repository was to test actual capabilities of Cursor and Vercel (sorry for the bad documentation).
