@@ -55,11 +55,19 @@ df_milan = prepare_milan_data()
 
 @app.get("/")
 async def home(request: Request):
+    # Debug prints
+    print("Loading data...")
+    print(f"Total matches: {len(df_milan)}")
+    print(f"Stats: {df_milan['result'].value_counts()}")
+    
     # Statistiche generali
     total_matches = len(df_milan)
     wins = len(df_milan[df_milan['result'] == 'W'])
     draws = len(df_milan[df_milan['result'] == 'D'])
     losses = len(df_milan[df_milan['result'] == 'L'])
+    
+    print(f"Wins: {wins}, Draws: {draws}, Losses: {losses}")
+    
     total_points = df_milan['points'].sum()
     goals_scored = df_milan['goals_scored'].sum()
     goals_conceded = df_milan['goals_conceded'].sum()
