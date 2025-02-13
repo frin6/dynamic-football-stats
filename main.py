@@ -5,6 +5,8 @@ from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 import random  # Add this at the top with other imports
+import os
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
@@ -297,6 +299,15 @@ async def home(request: Request):
         }
     )
 
+# Dopo app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run(app, host="0.0.0.0", port=port)
