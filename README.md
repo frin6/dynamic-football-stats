@@ -1,4 +1,4 @@
-## dynamic football_stats
+## Dynamic Football Stats
 
 This repository was created to generate valuable insights from football data. While the current dataset is static, taken from the 2023/24 Serie A League, the project is designed to be dynamic and could easily integrate data from the current season through an API.
 
