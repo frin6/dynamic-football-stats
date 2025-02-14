@@ -19,3 +19,6 @@ Thumbs.db
 # Local development
 *.log
 .env
+
+# Keep static directory
+!static/.gitkeep
