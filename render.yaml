@@ -3,7 +3,7 @@ services:
     name: football-stats
     env: python
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn main:app -w 4 -k uvicorn.workers.UvicornWorker
+    startCommand: gunicorn -w 4 -k uvicorn.workers.UvicornWorker -b 0.0.0.0:$PORT main:app
     envVars:
       - key: PYTHON_VERSION
         value: 3.9 
