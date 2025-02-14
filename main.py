@@ -303,4 +303,5 @@ async def home(request: Request):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app)
+    # Use 127.0.0.1 for local development
+    uvicorn.run(app, host="127.0.0.1", port=8000)
