@@ -5,6 +5,10 @@ from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 import random  # Add this at the top with other imports
+import os
+
+# Create static directory if it doesn't exist
+os.makedirs("static", exist_ok=True)
 
 app = FastAPI()
 

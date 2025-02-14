@@ -15,7 +15,6 @@ This web application shows football seasons statistics (AC Milan stats in the ex
 - Interactive quiz
 - Season statistics
 
-
 ## Features
 - Interactive points progression chart
 - Last 5 matches display
