@@ -44,7 +44,7 @@ This web application shows football seasons statistics (AC Milan stats in the ex
    ```bash
    uvicorn main:app --reload
    ```
-5. Visit http://localhost:8000
+5. Visit http://0.0.0.0:10000
 
 ## Deployment
 The application is configured for deployment on Render.com using the provided `render.yaml` configuration.
