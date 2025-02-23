@@ -124,31 +124,31 @@ def prepare_quiz_question(df):
             else:
                 current_streak = 0
                 
-        wrong_answers = []
+        wrong_answers = set()  # Use set instead of list
         while len(wrong_answers) < 3:
-            wrong = random.randint(1, max_consecutive_wins + 2)
-            if wrong != max_consecutive_wins and wrong not in wrong_answers:
-                wrong_answers.append(str(wrong))
+            wrong = str(random.randint(1, max_consecutive_wins + 2))
+            if wrong != str(max_consecutive_wins):
+                wrong_answers.add(wrong)
                 
         return {
             'question': 'What was Milan\'s longest winning streak this season?',
             'correct_answer': str(max_consecutive_wins),
-            'wrong_answers': wrong_answers
+            'wrong_answers': list(wrong_answers)  # Convert back to list
         }
         
     elif question_type == 5:
         # Clean sheets
         clean_sheets = len(df[df['goals_conceded'] == 0])
-        wrong_answers = []
+        wrong_answers = set()  # Use set
         while len(wrong_answers) < 3:
-            wrong = random.randint(max(0, clean_sheets-3), clean_sheets+3)
-            if wrong != clean_sheets and wrong not in wrong_answers:
-                wrong_answers.append(str(wrong))
+            wrong = str(random.randint(max(0, clean_sheets-3), clean_sheets+3))
+            if wrong != str(clean_sheets):
+                wrong_answers.add(wrong)
                 
         return {
             'question': 'How many clean sheets did Milan keep this season?',
             'correct_answer': str(clean_sheets),
-            'wrong_answers': wrong_answers
+            'wrong_answers': list(wrong_answers)
         }
         
     elif question_type == 6:
@@ -157,31 +157,32 @@ def prepare_quiz_question(df):
         total_goals = random_match['goals_scored'] + random_match['goals_conceded']
         wrong_answers = []
         while len(wrong_answers) < 3:
-            wrong = random.randint(1, 6)
-            if wrong != total_goals and wrong not in wrong_answers:
-                wrong_answers.append(str(wrong))
+            wrong = str(random.randint(1, 6))  # Convert to string
+            # Check if number is not already present
+            if wrong != str(total_goals) and wrong not in wrong_answers:
+                wrong_answers.append(wrong)
                 
         return {
             'question': f'How many total goals were scored in the match against {random_match["opponent"]}?',
-            'correct_answer': str(total_goals),
+            'correct_answer': str(total_goals),  # Convert to string
             'wrong_answers': wrong_answers
         }
         
     else:
-        # Average points per match up to a random matchday
+        # Average points per match
         random_matchday = random.randint(10, len(df))
         points = df.iloc[random_matchday-1]['cumulative_points']
         avg_points = round(points / random_matchday, 2)
-        wrong_answers = []
+        wrong_answers = set()  # Use set to avoid duplicates
         while len(wrong_answers) < 3:
-            wrong = round(random.uniform(max(0.5, avg_points-1), avg_points+1), 2)
-            if abs(wrong - avg_points) > 0.2 and str(wrong) not in wrong_answers:
-                wrong_answers.append(str(wrong))
+            wrong = str(round(random.uniform(max(0.5, avg_points-1), avg_points+1), 2))
+            if abs(float(wrong) - avg_points) > 0.2 and wrong != str(avg_points):
+                wrong_answers.add(wrong)
                 
         return {
             'question': f'What was Milan\'s average points per match after {random_matchday} games?',
             'correct_answer': str(avg_points),
-            'wrong_answers': wrong_answers
+            'wrong_answers': list(wrong_answers)  # Convert set to list
         }
 
 @app.get("/")
@@ -278,9 +279,9 @@ async def home(request: Request):
     random.shuffle(all_answers)
     
     return templates.TemplateResponse(
+        request,
         "index.html",
         {
-            "request": request,
             "stats": {
                 "matches": total_matches,
                 "wins": wins,

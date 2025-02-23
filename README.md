@@ -41,10 +41,10 @@ This web application shows football seasons statistics (AC Milan stats in the ex
    ```
 4. Run the application:
    ```bash
-   uvicorn main:app --reload
+   uvicorn src.main:app --reload
    ```
 5. Visit http://127.0.0.1:8000
 
 ## Deployment
 The application is configured for deployment on Render.com using the provided `render.yaml` configuration.
-The application is deployed on Render.com at https://dynamic-football-stats-2.onrender.com/. If it doesn’t load immediately, please allow up to 20 seconds due to the free tier service limitations. (Note: Availability may be limited as it's hosted on a free plan.)
+The application is deployed on Render.com at https://dynamic-football-stats-2.onrender.com/. If it doesn't load immediately, please allow up to 20 seconds due to the free tier service limitations. (Note: Availability may be limited as it's hosted on a free plan.)

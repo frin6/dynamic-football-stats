@@ -5,3 +5,5 @@ python-multipart
 jinja2
 plotly
 gunicorn
+pytest
+httpx  # per TestClient

@@ -5,20 +5,46 @@ __pycache__/
 .venv/
 venv/
 ENV/
+*.egg-info/
+dist/
+build/
+.eggs/
+.pytest_cache/
 
 # IDE
 .idea/
 .vscode/
 *.swp
 *.swo
+.project
+.pydevproject
+.settings/
 
 # OS
 .DS_Store
 Thumbs.db
+*.bak
+*.tmp
+*~
 
 # Local development
 *.log
 .env
+.env.*
+!.env.example
+.coverage
+coverage.xml
+htmlcov/
+
+# Dependencies
+pip-log.txt
+pip-delete-this-directory.txt
 
 # Keep static directory
 !static/.gitkeep
+
+# Documentation
+/site
+
+# Jupyter Notebook
+.ipynb_checkpoints
